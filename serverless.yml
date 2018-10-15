@@ -1,0 +1,26 @@
+service: bridgebot
+
+custom:
+  secrets: ${file(secrets.json)}
+  serverless-offline:
+    port: 3001
+
+# frameworkVersion: "=X.X.X"
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  environment:
+    SLACK_TOKEN: ${self:custom.secrets.slackToken} # Slack Token
+
+functions:
+  pollGroup:
+    handler: functions.pollGroup
+    events:
+      - http:
+          path: poll-group
+          method: post
+          cors: true
