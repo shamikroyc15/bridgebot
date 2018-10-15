@@ -8,10 +8,10 @@ const token = process.env.SLACK_TOKEN;
 
 module.exports.pollGroup = (event, context, callback) => {
   const web = new WebClient(token);
-  const body = parse(event.body);
+  const body = JSON.parse(event.body);
   return web.chat
     .postMessage({
-      channel: body.channel_id,
+      channel: body.channel,
       attachments: [
         {
           text: "Hello from BridgeBot!"
@@ -20,7 +20,11 @@ module.exports.pollGroup = (event, context, callback) => {
     })
     .then(res => {
       return {
-        statusCode: 200
+        statusCode: 200,
+        headers: {
+          "content-type": "application/json"
+        },
+        body: JSON.stringify(res)
       };
     })
     .catch(err => {
