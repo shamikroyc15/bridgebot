@@ -1,6 +1,9 @@
 const { WebClient } = require("@slack/client");
 const { parse } = require("querystring");
 
+// use this to make firebase queries!
+const { db } = require("./db");
+
 const token = process.env.SLACK_TOKEN;
 
 module.exports.pollGroup = (event, context, callback) => {
