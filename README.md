@@ -14,17 +14,16 @@ $ npm install
 
 ### 🔒 Secrets
 
-You will need two secret files to get this app running
+You will need a secret files to get this app running!
 
-`secrets.json`
+`secrets.json` - this can be found pinned in the slack channel for this project
 
 ```
   {
-    "slackToken": <slack-token>
+    "slackToken": <slack-token>,
+    ...fireBaseCredentials
   }
 ```
-
-`firebase-credentials.json` - this can be found pinned in the slack channel for this project
 
 ### ⚡️ Run the app
 
