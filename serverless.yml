@@ -9,7 +9,6 @@ custom:
 
 plugins:
   - serverless-offline
-
 provider:
   name: aws
   runtime: nodejs8.10
@@ -29,6 +28,7 @@ provider:
 functions:
   pollGroup:
     handler: functions.pollGroup
+    role: arn:aws:iam::903524011484:role/bridgebot-lambda-role
     events:
       - http:
           path: poll-group
