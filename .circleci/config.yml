@@ -15,6 +15,9 @@ jobs:
           name: Restore NPM Package Cache
           key: npm-packages-{{ .Branch }}-{{ checksum "package.json" }}
       - run:
+          name: Install awscli
+          command: sudo pip install awscli
+      - run:
           name: Get firebase credentials
           command: aws s3 cp "s3://bridge-projects-firebase/bridgebot-secrets.json" "secrets.json"
       - run:
@@ -30,12 +33,6 @@ jobs:
           key: npm-packages-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - node_modules/
-      - run:
-          name: Install awsebcli
-          command: sudo pip install awsebcli
-      - run:
-          name: Install awscli
-          command: sudo pip install awscli
       - run:
           name: Deploy with serverless
           command: serverless deploy function --function pollGroup
