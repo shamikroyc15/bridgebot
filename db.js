@@ -16,8 +16,6 @@ const serviceAccount = {
   client_x509_cert_url: process.env.FIREBASE_CLIENT_CERT_URL
 };
 
-console.log("serviceAccount: ", serviceAccount);
-
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://bridge-bot-d372a.firebaseio.com"
