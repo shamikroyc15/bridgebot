@@ -19,7 +19,7 @@ jobs:
           command: sudo pip install awscli
       - run:
           name: Get firebase credentials
-          command: aws s3 cp "s3://bridge-projects-firebase/bridgebot-secrets.json" "secrets.json"
+          command: aws s3 cp "s3://bridge-projects-firebase/bridgebot-firebase.json" "secrets.json"
       - run:
           name: Install Serverless CLI and plugins
           command: |
