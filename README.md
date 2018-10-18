@@ -51,7 +51,7 @@ Whenever the `<host-url>/poll-group` POST endpoint is hit, it will run the `poll
 
 ### 🛢 Database
 
-We'll be using firebase for our database to store poll questions and results. Add the `firebase-credentials.json` secret file to the root of this repo to connect to the database.
+We'll be using firebase for our database to store poll questions and results.
 
 ## 📝 Git Flow
 

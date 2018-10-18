@@ -1,6 +1,4 @@
-const admin = require("firebase-admin");
-
-// const serviceAccount = require("./firebase-credentials.json");
+const firebase = require("firebase-admin");
 
 const serviceAccount = {
   type: process.env.FIREBASE_TYPE,
@@ -16,13 +14,15 @@ const serviceAccount = {
   client_x509_cert_url: process.env.FIREBASE_CLIENT_CERT_URL
 };
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://bridge-bot-d372a.firebaseio.com"
-});
-
 // Initialize Cloud Firestore through Firebase
-const db = admin.firestore();
+const db = !firebase.apps.length
+  ? firebase
+      .initializeApp({
+        credential: firebase.credential.cert(serviceAccount),
+        databaseURL: "https://bridge-bot-d372a.firebaseio.com"
+      })
+      .firestore()
+  : firebase.firestore();
 
 module.exports = {
   db
