@@ -94,7 +94,7 @@ module.exports.submitPollQuestion = (event, context, callback) => {
     },
     body: JSON.stringify({
       success: true,
-      message: JSON.stringify(body)
+      message: JSON.stringify(body.payload)
     })
   }))
 }
