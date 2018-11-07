@@ -58,3 +58,11 @@ functions:
           path: submit-poll-question
           method: post
           cors: true
+  getAllPollQuestions:
+    handler: functions.getAllPollQuestions
+    role: arn:aws:iam::903524011484:role/bridgebot-lambda-role
+    events:
+      - http:
+          path: polls
+          method: get
+          cors: true        
