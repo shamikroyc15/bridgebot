@@ -101,8 +101,6 @@ module.exports.submitPollQuestion = (event, context, callback) => {
 }
 
 module.exports.getAllPollQuestions = () => {
-
-console.log('hey how is life');
   return db.collection('polls').get().then(qSnapshot => ({
     statusCode: 200,
     headers: {
