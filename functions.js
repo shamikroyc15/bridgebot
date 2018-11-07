@@ -87,14 +87,39 @@ module.exports.getUserList = (event, context, callback) => {
 
 module.exports.submitPollQuestion = (event, context, callback) => {
   const body = JSON.parse(event.body);
-  return new Promise(resolve => resolve({
+
+  return db.collection('polls').add(body.payload).then(ref => ({
     statusCode: 200,
     headers: {
       "content-type": "application/json"
     },
     body: JSON.stringify({
       success: true,
-      message: JSON.stringify(body.payload)
+      message: `SUCCESSFULLY SAVED QUESTION AT ID: ${ref.id}`
+    })
+  }));
+}
+
+module.exports.getAllPollQuestions = () => {
+  return db.collection('polls').get().then(qSnapshot => ({
+    statusCode: 200,
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify({
+      success: true,
+      message: qSnapshot.docs.map(doc => doc.data())
     })
   }))
+  .catch((err) => ({
+    statusCode: 500,
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify({
+      success: false,
+      message: err.message
+    })
+  }));
 }
+
